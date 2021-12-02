@@ -1,27 +1,29 @@
-input = File.readlines('../Data/day01.txt')
-data = input.map { |n| n.chomp('/n').to_i }
-def count_times_number_increases(array)
-  previous_number = array.first
-  count = 0
-  array.each do |number|
-    if number > previous_number
-      count += 1
+class Day1
+  input = File.readlines('../Data/day01.txt')
+  data = input.map { |n| n.chomp('/n').to_i }
+  def count_times_number_increases(array)
+    previous_number = array.first
+    count = 0
+    array.each do |number|
+      if number > previous_number
+        count += 1
+      end
+      previous_number = number
     end
-    previous_number = number
+    count
   end
-  count
-end
-count_times_number_increases(data)
+  part1solution = count_times_number_increases(data)
 
-def make_three_measurement_window(array)
-  array_of_threes = []
-  for index in (0..array.length-3)
-    sum = array[index] + array[index+1] + array[index+2]
-    array_of_threes.append(sum)
+  def make_three_measurement_window(array)
+    array_of_threes = []
+    for index in (0..array.length-3)
+      sum = array[index] + array[index+1] + array[index+2]
+      array_of_threes.append(sum)
+    end
+    array_of_threes
   end
-  array_of_threes
+  part2solution = count_times_number_increases(make_three_measurement_window(data))
 end
-p count_times_number_increases(make_three_measurement_window(data))
 
 
 
